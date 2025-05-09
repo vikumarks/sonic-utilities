@@ -150,7 +150,7 @@ def fan():
 
 # 'temperature' subcommand ("show platform temperature")
 @platform.command()
-@click.option('--json', is_flag=True, help="Output in JSON format")
+@click.option('-j', '--json', is_flag=True, help="Output in JSON format")
 def temperature(json):
     """Show device temperature information"""
     cmd = ['tempershow']

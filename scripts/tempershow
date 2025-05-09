@@ -28,7 +28,7 @@ class TemperShow(object):
         self.db = SonicV2Connector(host="127.0.0.1")
         self.db.connect(self.db.STATE_DB)
 
-    def show(self):
+    def show(self, output_json):
         keys = self.db.keys(self.db.STATE_DB, TEMPER_TABLE_NAME + '*')
         if not keys:
             print('Thermal Not detected\n')
@@ -74,7 +74,8 @@ class TemperShow(object):
         else:
             print('No temperature data available\n')
 
-
+            
+if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Display the temperature Sensor information',
                                      formatter_class=argparse.RawTextHelpFormatter,
                                      epilog="""
