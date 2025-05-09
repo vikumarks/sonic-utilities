@@ -74,7 +74,7 @@ class TemperShow(object):
         else:
             print('No temperature data available\n')
 
-
+            
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Display the temperature Sensor information',
                                      formatter_class=argparse.RawTextHelpFormatter,
