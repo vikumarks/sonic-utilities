@@ -835,7 +835,7 @@ def watermark():
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json','-j','json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def wm_q_uni(namespace, json_output):
     """Show user WM for unicast queues"""
     command = ['watermarkstat', '-t', 'q_shared_uni']
@@ -855,7 +855,7 @@ def wm_q_uni(namespace, json_output):
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json','-j','json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def wm_q_multi(namespace, json_output):
     """Show user WM for multicast queues"""
     command = ['watermarkstat', '-t', 'q_shared_multi']
@@ -875,7 +875,7 @@ def wm_q_multi(namespace, json_output):
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json','-j','json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def wm_q_all(namespace, json_output):
     """Show user WM for all queues"""
     command = ['watermarkstat', '-t', 'q_shared_all']
@@ -904,7 +904,7 @@ def persistent_watermark():
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json','-j','json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def pwm_q_uni(namespace, json_output):
     """Show persistent WM for unicast queues"""
     command = ['watermarkstat', '-p', '-t', 'q_shared_uni']
@@ -924,7 +924,7 @@ def pwm_q_uni(namespace, json_output):
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json','-j','json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def pwm_q_multi(namespace, json_output):
     """Show persistent WM for multicast queues"""
     command = ['watermarkstat', '-p', '-t', 'q_shared_multi']
@@ -944,7 +944,7 @@ def pwm_q_multi(namespace, json_output):
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json','-j','json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def pwm_q_all(namespace, json_output):
     """Show persistent WM for all queues"""
     command = ['watermarkstat', '-p', '-t', 'q_shared_all']
