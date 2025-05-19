@@ -976,7 +976,7 @@ def watermark():
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")              
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def wm_pg_headroom(namespace, json_output):
     """Show user headroom WM for pg"""
     command = ['watermarkstat', '-t', 'pg_headroom']
@@ -995,7 +995,7 @@ def wm_pg_headroom(namespace, json_output):
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")              
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def wm_pg_shared(namespace, json_output):
     """Show user shared WM for pg"""
     command = ['watermarkstat', '-t', 'pg_shared']
@@ -1033,7 +1033,7 @@ def persistent_watermark():
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")              
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def pwm_pg_headroom(namespace, json_output):
     """Show persistent headroom WM for pg"""
     command = ['watermarkstat', '-p', '-t', 'pg_headroom']
@@ -1053,7 +1053,7 @@ def pwm_pg_headroom(namespace, json_output):
               show_default=True,
               help='Namespace name or all',
               callback=multi_asic_util.multi_asic_namespace_validation_callback)
-@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")              
+@click.option('--json', '-j', 'json_output', is_flag=True, default=False, show_default=True, help="Display JSON output")
 def pwm_pg_shared(namespace, json_output):
     """Show persistent shared WM for pg"""
     command = ['watermarkstat', '-p', '-t', 'pg_shared']
