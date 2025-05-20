@@ -1104,16 +1104,20 @@ def switchport_mode_config(db):
     portchannel_data = list(db.cfgdb.get_table('PORTCHANNEL').keys())
 
     portchannel_member_table = db.cfgdb.get_table('PORTCHANNEL_MEMBER')
-    filter_port_data = [interface for interface in port_keys if not clicommon.interface_is_in_portchannel(portchannel_member_table, interface)]
+    filter_port_data = [
+        interface
+        for interface in port_keys
+        if not clicommon.interface_is_in_portchannel(portchannel_member_table, interface)
+        ]
     keys = filter_port_data + portchannel_data
     def tablelize(keys):
-        interface_naming_mode  = clicommon.get_interface_naming_mode()
+        interface_naming_mode = clicommon.get_interface_naming_mode()
         natsorted_keys = natsorted(keys)
         if interface_naming_mode != "alias":
-            interface =natsorted_keys
+            interface = natsorted_keys
         else:
             interface = [clicommon.get_interface_name_for_display(db, key) for key in natsorted_keys]
-        
+
         vlan_member = db.cfgdb.get_table('VLAN_MEMBER')
         vlan_member_keys = [key for _, key in vlan_member]
         vlan_member = {
@@ -1123,9 +1127,24 @@ def switchport_mode_config(db):
                     }
                     for (vlan, iface), data in vlan_member.items()
                 }
-        sw_mode         = [clicommon.get_interface_switchport_mode(db, key, vlan_member_keys, port_data) for key in natsorted_keys]
-        untag_vlan_memb = [vlan_member[intf]['vlan_id'] if intf in vlan_member and vlan_member[intf].get('tagging_mode') == 'untagged' else '' for intf in interface]
-        tag_vlan_meb    = [vlan_member[intf]['vlan_id'] if intf in vlan_member and vlan_member[intf].get('tagging_mode') == 'tagged' else '' for intf in interface]
+        sw_mode = [
+            clicommon.get_interface_switchport_mode(db, key, vlan_member_keys, port_data)
+            for key in natsorted_keys
+            ]
+
+        untag_vlan_memb = [
+            vlan_member[intf]['vlan_id']
+            if intf in vlan_member and vlan_member[intf].get('tagging_mode') == 'untagged'
+            else ''
+            for intf in interface
+            ]
+
+        tag_vlan_meb = [
+            vlan_member[intf]['vlan_id']
+            if intf in vlan_member and vlan_member[intf].get('tagging_mode') == 'tagged'
+            else ''
+            for intf in interface
+            ]
         tabel = list(zip(interface, sw_mode, untag_vlan_memb, tag_vlan_meb))
         return tabel
 
@@ -1143,22 +1162,32 @@ def switchport_mode_status(db):
 
     portchannel_member_table = db.cfgdb.get_table('PORTCHANNEL_MEMBER')
     vlan_member_table = db.cfgdb.get_table('VLAN_MEMBER')
-    vlan_member_keys = [key for _, key in vlan_member_table]    
+    vlan_member_keys = [key for _, key in vlan_member_table]
     if portchannel_member_table:
-        filter_port_data = [interface for interface in port_keys if not clicommon.interface_is_in_portchannel(portchannel_member_table, interface)]
+        filter_port_data = [
+            interface for interface in port_keys
+            if not clicommon.interface_is_in_portchannel(
+                portchannel_member_table, interface
+                )
+            ]
     else:
         filter_port_data = port_keys[:]
-        
+
     keys = filter_port_data + portchannel_data
 
     def tablelize(keys):
-        interface_naming_mode  = clicommon.get_interface_naming_mode()
+        interface_naming_mode = clicommon.get_interface_naming_mode()
         natsorted_keys = natsorted(keys)
         if interface_naming_mode != "alias":
             interface = natsorted_keys
         else:
             interface = clicommon.get_interface_name_for_display(db, natsorted_keys)
-        modes = [clicommon.get_interface_switchport_mode(db, key, vlan_member_keys, port_data) for key in natsorted_keys]
+        modes = [
+                clicommon.get_interface_switchport_mode(
+                    db, key, vlan_member_keys, port_data
+                )
+                for key in natsorted_keys
+            ]
         tabel = list(zip(interface, modes))
         return tabel
 
