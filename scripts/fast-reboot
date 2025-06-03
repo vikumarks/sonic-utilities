@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
-REBOOT_USER=$(logname)
+# reboot DBus service, which uses this script, doesn't use a login shell
+REBOOT_USER="$(logname 2> /dev/null || whoami)"
 REBOOT_TIME=$(date)
 REBOOT_CAUSE_FILE="/host/reboot-cause/reboot-cause.txt"
 WARM_DIR=/host/warmboot
@@ -782,7 +783,7 @@ init_warm_reboot_states
 # start sending LACPDUs to keep the LAGs refreshed
 # the process will die in 30s
 debug "Starting lag_keepalive to send LACPDUs ..."
-timeout 30 python3 ${LAG_KEEPALIVE_SCRIPT} --fork-into-background
+timeout --foreground 30 python3 ${LAG_KEEPALIVE_SCRIPT} --fork-into-background
 # give the lag_keepalive script a chance to send some LACPDUs
 sleep 5
 
